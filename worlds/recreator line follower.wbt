@@ -1,0 +1,179 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 1 0 0 4.71238898038469
+  position -8.851995462449848e-17 3.6539464280163907 -8.535731933133073e-17
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.01 0 0
+  floorSize 2.8 1.6
+  floorTileSize 2.8 1.6
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "textures/parquetry/Arena_LineFollower.png"
+      ]
+    }
+    roughness 1
+    roughnessMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_roughness.jpg"
+      ]
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_normal.jpg"
+      ]
+    }
+    occlusionMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_occlusion.jpg"
+      ]
+    }
+  }
+}
+Robot {
+  translation -0.349992 0 0.41
+  rotation 0 1 0 -1.57
+  scale 1.1 1.1 1.1
+  children [
+    DEF Body Transform {
+      translation 0 0.0415 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35.66816800868091
+        anchor 0.045 0.025 0
+      }
+      device [
+        RotationalMotor {
+          name "motor_1"
+        }
+        PositionSensor {
+          name "ps_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04531026471418763 0.024981712694879307 6.170891735653917e-05
+        rotation 0.6564701879125705 -0.6453913050680455 -0.3905341927726677 3.8887602305046407
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics DEF wheel_physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35.66816797710567
+        anchor -0.045 0.025 0
+      }
+      device [
+        DEF motor_2 RotationalMotor {
+          name "motor_2"
+        }
+        PositionSensor {
+          name "ps_2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.0454180891058931 0.024809811826236355 -0.00012158946930525909
+        rotation 0.6566366824379515 -0.6446207957544727 -0.39152560191863744 3.895732986877491
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics USE wheel_physics
+      }
+    }
+    Solid {
+      translation 0.015 0.07 0.045
+      children [
+        DEF eye Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      translation -0.015 0.07 0.045
+      children [
+        USE eye
+      ]
+      name "solid(3)"
+    }
+    DistanceSensor {
+      translation 0.02 0.01 0.045
+      rotation 0 0 1 -1
+      name "ir_1"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.02 0.01 0.045
+      rotation 0 0 1 -2
+      name "ir_2"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0 0.01 0.045
+      rotation 0 0 1 -1.57
+      name "ir_3"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.045 0.01 0
+      rotation 0 0 1 -1.57
+      name "ir_4"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.045 0.01 0
+      rotation 0 0 1 -1.57
+      name "ir_5"
+      type "infra-red"
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "lfr_controller"
+}
