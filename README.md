@@ -54,7 +54,7 @@ right.</p>
   <div id="Team-Member">Team-Member</div></h1>
 
 <ol start="1">
-  <li> <a href="https://github.com/erdivyanshu"> Divyanshu Yadav</a> (Team-Leader)</li>
+  <li> <a href="https://github.com/erdivyanshu"> Divyanshu Yadav</li>
   <li> <a href="#"> Shaurya Raj Srivastava</a></li>
   <li> <a href="#"> Rishabh Gupta</a></li>
   <li> <a href="#"> Saurav Raj</a></li>
